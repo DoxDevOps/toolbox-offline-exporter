@@ -1,8 +1,8 @@
 # coding=utf-8
 import subprocess
-from os.path import exists, isdir, getsize
+from os.path import exists
 from flask import json
-import netifaces
+
 
 _command_ = "git describe --tags"  # command to check the tags
 _emc_dir_ = "/var/www/emastercard-upgrade-automation"  # EMC installation directory
