@@ -5,7 +5,7 @@ import urllib2
 import re
 import uuid
 
-from utils.utils import load_file
+from utils.utilities import load_file
 from utils.validate_emr_data import save_facility_details
 
 

@@ -1,7 +1,7 @@
 # coding=utf-8
 import json
 
-from utils.utils import write_file
+from utils.utilities import write_file
 
 
 def validate_config_file():

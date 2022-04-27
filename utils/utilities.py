@@ -11,8 +11,8 @@ def load_file(location):
     :return: json object
     """
     with open(location) as f:
-        settings = json.load(f)
-    return settings
+        data = json.load(f)
+    return data
 
 
 def write_file(location, info):

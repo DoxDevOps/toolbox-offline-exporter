@@ -1,6 +1,7 @@
 #! /usr/bin/python
 import os
-from utils.setup_toolbox import mac_address
+
+from utils.setup_toolbox import mac_address, get_facility_name
 
 
 def configure_site():
@@ -19,8 +20,7 @@ def configure_site():
     os.system("sudo apt install virtualenv")
     os.system("virtualenv flask")
     print("*********** SETTING FACILITY DETAILS *****************")
-    os.system(". flask/bin/activate && python -c 'import setup_facility_details;  "
-              "setup_facility_details.get_facility_name()'")
+    get_facility_name()
     mac = mac_address()
     print(mac)
     print("*********** END - Facility Configured Successfully *****************")
