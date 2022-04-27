@@ -5,6 +5,7 @@ import urllib2
 import re
 import uuid
 
+from utils.utils import load_file
 from utils.validate_emr_data import save_facility_details
 
 
@@ -24,7 +25,7 @@ def search_facilities(facility_name):
     :param facility_name: string
     :return: boolean (just a checker)
     """
-    settings = load_settings("config/.json")
+    settings = load_file("config/.json")
     url = settings["endpoint"]
     token = settings["token"]
     json_dict = {'site_name': facility_name}
@@ -119,12 +120,3 @@ def send_mac_address():
     return True
 
 
-def load_settings(location):
-    """
-    a function that loads settings (token and endpoint)
-    :type location: string
-    :return: json object
-    """
-    with open(location) as f:
-        settings = json.load(f)
-    return settings

@@ -1,6 +1,8 @@
 # coding=utf-8
 import json
 
+from utils.utils import write_file
+
 
 def validate_config_file():
     """
@@ -23,13 +25,15 @@ def save_facility_details(site_data):  # this function will be called whe we imp
     # details to be entered on the web browser
     if site_data["apps"][0] == "Point of Care":
         app_id = 1
+        information = {"core": "/var/www/BHT-Core", "art": "/var/www/BHT-Core/apps/ART", "api": "/var/www/BHT-EMR-API"}
+        write_file("config/apps.json", information)
     else:
         app_id = 2
+        information_emc = {"emc": "/var/www/emastercard-upgrade-automation", "emc2": "/emastercard-upgrade-automation"}
+        write_file("config/apps.json", information_emc)
 
     site_name = site_data["name"]
     uuid = site_data["uuid"]
-    with open("config/config.json", "w") as data:
-        information = {"uuid": uuid, "app_id": app_id, "site_name": site_name}
-        data.write(json.dumps(information))
-        data.close()
+    information = {"uuid": uuid, "app_id": app_id, "site_name": site_name}
+    write_file("config/config.json", information)
     return True
