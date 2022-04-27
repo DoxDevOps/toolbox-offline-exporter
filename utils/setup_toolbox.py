@@ -1,10 +1,11 @@
 # coding=utf-8
-#!/bin/bash
+# !/bin/bash
 import json
 import urllib2
 import re
 import uuid
 
+from utils.validate_emr_data import save_facility_details
 
 
 def get_facility_name():
@@ -27,10 +28,8 @@ def search_facilities(facility_name):
     url = settings["endpoint"]
     token = settings["token"]
     json_dict = {'site_name': facility_name}
-
     # convert json_dict to JSON
     json_data = json.dumps(json_dict)
-
     # Creating a Post request
     req = urllib2.Request(url, json_data)
     req.get_method = lambda: 'GET'
@@ -43,7 +42,7 @@ def search_facilities(facility_name):
         display_facilities(results)
     else:
         print("\n No match Found, Please try again :")
-        get_facility_name() # start all over
+        get_facility_name()  # start all over
     return True
 
 
@@ -101,7 +100,7 @@ def save_facility(facilities, facility_number):
     site_data = {"apps": facilities[facility_number]['fields']['apps'], "name": selected_facility,
                  "uuid": facilities[facility_number]['fields']['uuid']}
     print("Selected District : " + selected_facility)
-    facility_details().save_facility_details(site_data)  # then save the details in config file
+    save_facility_details(site_data)  # then save the details in config file
     return True
 
 
@@ -112,8 +111,8 @@ def mac_address():
         mac_address : mac address of a machine
     """
     # convert to hex and separate two figures with :
-    mac_address = ':'.join(re.findall('..', '%012x' % uuid.getnode()))  # type: Union[Union[str, unicode], Any]
-    return mac_address
+    mac = ':'.join(re.findall('..', '%012x' % uuid.getnode()))
+    return mac
 
 
 def send_mac_address():

@@ -1,15 +1,14 @@
 #! /usr/bin/python
-import getpass
-import json
 import os
-
-import requests as requests
-from flask import request
+from utils.setup_toolbox import get_facility_name, mac_address
 
 
 def configure_site():
-    """user = getpass.getuser()
-    #Configures the site
+    """
+    sets up toolbox
+    :return: true
+    """
+    # Configures the site
     # install pip
     print(" Step 1 : Update laptop")
     answer = os.system("sudo apt-get update")
@@ -21,17 +20,19 @@ def configure_site():
     os.system("virtualenv flask")
     print("creating Toolbox Service")
     # here is the code for creating the site.
-
+    print("********************")
+    print("SET UP FACILITY DETAILS")
+    get_facility_name()
+    print("SITE IS NOW CONFIGURED !!!")
+    print("********************")
     os.system("sudo cp toolbox.service /etc/systemd/system/")
     os.system("sudo systemctl daemon-reload && sudo systemctl start toolbox && sudo systemctl enable toolbox")
-    print("creating browser shortcut !!")
-    os.system("cp toolbox.desktop /home/"+user+"/Desktop/")
-    print("Set Up is COMPLETE !!!!!!!!!!!!!!!!!!!")"""
-    response = requests.get(url="https://toolbox.hismalawi.org/ext-api/site/get/details", data=json.dumps({"site_name":"DHO"}),
-                            headers={"Content-type": "application/json", "Accept": "text/plain",
-                                     "Authorization": "yyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2MzY0MjQ0NjR9.iRlIMoZgYUQxZMq-CZiLusUfPyofkLCA8djNbOaJYT0"})
-    print(response.json())
-
+    print("*********** SETTING FACILITY DETAILS *****************")
+    os.system(". flask/bin/activate && python -c 'import setup_facility_details;  "
+              "setup_facility_details.get_facility_name()'")
+    mac = mac_address()
+    print(mac)
+    print("*********** END - Facility Configured Successfully *****************")
     return True
 
 
