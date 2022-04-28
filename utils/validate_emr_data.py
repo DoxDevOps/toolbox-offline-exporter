@@ -4,13 +4,13 @@ import json
 from utils.utilities import write_file
 
 
-def validate_config_file():
+def validate_config_file(location):
     """
     validates if data is in the correct format
     :return: Return False when the file is not correct
     """
     try:
-        with open('config/config.json') as f:
+        with open(location) as f:
             return json.load(f)
     except ValueError as e:
         return False

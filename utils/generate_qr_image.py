@@ -2,7 +2,7 @@
 import qrcode
 
 
-def add_qr_data(input_data):
+def add_qr_data(input_data, image_location):
     """
     get data and create a qr image
     :param input_data: data to create a qr image
@@ -15,5 +15,5 @@ def add_qr_data(input_data):
     qr.add_data(input_data)
     qr.make(fit=True)
     img = qr.make_image(fill='black', back_color='white')
-    img.save('templates/static/images/toolbox.png')
+    img.save(image_location)
     return True
