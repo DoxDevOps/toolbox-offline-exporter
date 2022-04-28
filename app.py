@@ -1,10 +1,11 @@
-
 import json
 from flask import Flask, render_template
-from utils.export_emr_data import check_systems
+from config.config import data
+from utils.export_emr_data import check_installation_folders
 from utils.generate_qr_image import add_qr_data
 from utils.utilities import load_file
 from utils.validate_emr_data import validate_config_file
+
 
 app = Flask(__name__, static_folder="templates/static")
 
@@ -16,16 +17,14 @@ def extract_data():
     Returns:
         dict: hosts from api
     """
-    # load file locations
-    locations = load_file("config/loc.json")
     # first verify if the data is correct in the config file
 
-    config_file_data = validate_config_file(locations["config"])
+    config_file_data = validate_config_file(data["config"])
     if not config_file_data:
         return render_template('error.html')  # this will load a page that informs the user to reconfigure toolbox
     # if all is alright, then do the following
     # 1. get EMR version
-    emr_data = check_systems(locations["apps_loc"])
+    emr_data = check_installation_folders(data["apps_loc"])
     if not emr_data:
         return render_template('error.html')
     # 2. This is a final Dictionary to be sent for QR Image generation
@@ -40,10 +39,10 @@ def extract_data():
 
     final_string_to_decrypt = json.dumps(final_emr_data)
     # 3. Add the data to QR Image
-    add_qr_data(final_string_to_decrypt, locations["toolbox_image"])
+    add_qr_data(final_string_to_decrypt, data["toolbox_image"])
 
     # 4 Get facility name . This name will be displayed on UI
-    site_name = load_file(locations["config"])
+    site_name = load_file(data["config"])
     return render_template('index.html', site_name=site_name["site_name"])
 
 

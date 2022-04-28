@@ -5,7 +5,7 @@ import urllib2
 import re
 import uuid
 
-from utils.utilities import load_file
+from utils.utilities import load_file, get_request
 from utils.validate_emr_data import save_facility_details
 
 
@@ -32,13 +32,7 @@ def search_facilities(facility_name):
     # convert json_dict to JSON
     json_data = json.dumps(json_dict)
     # Creating a Post request
-    req = urllib2.Request(url, json_data)
-    req.get_method = lambda: 'GET'
-    req.add_header('Content-type', 'application/json')
-    req.add_header('Accept', 'text/plain')
-    req.add_header('Authorization', token)
-    r = urllib2.urlopen(req)
-    results = r.read()
+    results = get_request(url, token, json_data)
     if len(results) != 2:
         display_facilities(results)
     else:

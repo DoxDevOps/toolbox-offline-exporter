@@ -5,6 +5,7 @@ import qrcode
 def add_qr_data(input_data, image_location):
     """
     get data and create a qr image
+    :param image_location: path to the image
     :param input_data: data to create a qr image
     :return: True if the qr image has been created or False when it has not been created
     """

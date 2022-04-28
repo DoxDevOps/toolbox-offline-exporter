@@ -2,6 +2,7 @@
 
 """ These are universal functions that do not depend on any other function/ functionality of toolbox"""
 import json
+import urllib2
 
 
 def load_file(location):
@@ -26,3 +27,21 @@ def write_file(location, info):
         data.write(json.dumps(info))
         data.close()
     return True
+
+
+def get_request(url, token, body):
+    """
+    makes a get request based on keywords sent from the body
+    :param url: endpoint
+    :param token: for authorization
+    :param body: data to be sent to the endpoint
+    :return: info from the endpoint
+    """
+    req = urllib2.Request(url, body)
+    req.get_method = lambda: 'GET'
+    req.add_header('Content-type', 'application/json')
+    req.add_header('Accept', 'text/plain')
+    req.add_header('Authorization', token)
+    r = urllib2.urlopen(req)
+    results = r.read()
+    return results

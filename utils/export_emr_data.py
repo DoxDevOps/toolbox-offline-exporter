@@ -6,15 +6,15 @@ from flask import json
 from utils.utilities import load_file
 
 
-def check_systems(location):
+def check_installation_folders(path):
     """
     checks if EMR installation folders are available
     :return:
     """
-    print(location)
-    print(type(location))
+    print(path)
+    print(type(path))
     version_dict = {}
-    apps_dir = load_file(location)
+    apps_dir = load_file(path)
     apps_dir = json.dumps(apps_dir)
     apps_dir = json.loads(apps_dir)
     for key in apps_dir:
