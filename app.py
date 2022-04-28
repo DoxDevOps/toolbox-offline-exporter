@@ -9,7 +9,7 @@ from utils.validate_emr_data import validate_config_file
 app = Flask(__name__, static_folder="templates/static")
 
 
-@app.route('/toolbox')
+@app.route('/')
 def extract_data():
     """gets EMR data and creates a QR Image
     Args: None
@@ -19,7 +19,7 @@ def extract_data():
     # load file locations
     locations = load_file("config/loc.json")
     # first verify if the data is correct in the config file
-    print(locations["config"])
+
     config_file_data = validate_config_file(locations["config"])
     if not config_file_data:
         return render_template('error.html')  # this will load a page that informs the user to reconfigure toolbox
@@ -45,7 +45,6 @@ def extract_data():
     # 4 Get facility name . This name will be displayed on UI
     site_name = load_file(locations["config"])
     return render_template('index.html', site_name=site_name["site_name"])
-
 
 
 if __name__ == '__main__':

@@ -11,13 +11,17 @@ def check_systems(location):
     checks if EMR installation folders are available
     :return:
     """
+    print(location)
+    print(type(location))
     version_dict = {}
     apps_dir = load_file(location)
-    for key, value in apps_dir:
-        if exists(value):
-            tag = get_emr_versions(value)
+    apps_dir = json.dumps(apps_dir)
+    apps_dir = json.loads(apps_dir)
+    for key in apps_dir:
+        if exists(apps_dir[key]):
+            tag = get_emr_versions(apps_dir[key])
             version_dict[key] = tag
-
+    print(version_dict)
     json_object = json.dumps(version_dict)
     json_object = json.loads(json_object)
     return json_object

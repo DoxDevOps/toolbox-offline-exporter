@@ -29,7 +29,7 @@ def save_facility_details(site_data):  # this function will be called whe we imp
         write_file("config/apps.json", information)
     else:
         app_id = 2
-        information_emc = {"emc": "/var/www/emastercard-upgrade-automation", "emc2": "/emastercard-upgrade-automation"}
+        information_emc = {"emc": "/var/www/emastercard-upgrade-automation"}
         write_file("config/apps.json", information_emc)
 
     site_name = site_data["name"]
