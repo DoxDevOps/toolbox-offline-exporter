@@ -1,6 +1,7 @@
 # coding=utf-8
 # !/bin/bash
 import json
+import os
 import urllib2
 import re
 import uuid
