@@ -20,7 +20,10 @@ def configure_site():
     os.system("sudo apt install virtualenv")
     os.system("virtualenv flask")
     print("*********** SETTING FACILITY DETAILS *****************")
-    os.system(". flask/bin/activate && pip install -r requirements.txt && python -c 'from utils.setup_toolbox import "
+    os.system(". flask/bin/activate && pip install -r requirements.txt && sudo apt-get install git")
+
+    print("******************************************************")
+    os.system(". flask/bin/activate && python -c 'from utils.setup_toolbox import "
               "get_facility_name; "
               "get_facility_name()'")
     mac = mac_address()
