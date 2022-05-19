@@ -45,6 +45,5 @@ def extract_data():
     site_name = load_file(data["config"])
     return render_template('index.html', site_name=site_name["site_name"])
 
-
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True, port=6010)
+    app.run(host='127.0.0.1', debug=True, port=6070)
