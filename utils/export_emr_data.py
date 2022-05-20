@@ -1,4 +1,6 @@
 # coding=utf-8
+
+import os
 import subprocess
 from os.path import exists
 from flask import json
@@ -11,12 +13,12 @@ def check_installation_folders(path):
     checks if EMR installation folders are available
     :return:
     """
-    print(path)
-    print(type(path))
+
     version_dict = {}
     apps_dir = load_file(path)
     apps_dir = json.dumps(apps_dir)
     apps_dir = json.loads(apps_dir)
+    print(apps_dir)
     for key in apps_dir:
         if exists(apps_dir[key]):
             tag = get_emr_versions(apps_dir[key])
@@ -33,13 +35,6 @@ def get_emr_versions(directory):
     :return:
         string: emr tags
     """
-    emc_result = subprocess.Popen("git describe --tags", shell=True, cwd='{}'.format(directory), stdout=subprocess.PIPE)
+    emc_result = subprocess.Popen(["/usr/bin/git  --git-dir={}/.git describe --tags `git rev-list --tags --max-count=1`".format(directory)], shell=True, stdout=subprocess.PIPE)
     emc_result = emc_result.stdout.read().strip()
     return emc_result
-
-
-
-
-
-
-
