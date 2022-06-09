@@ -35,6 +35,6 @@ def get_emr_versions(directory):
     :return:
         string: emr tags
     """
-    emc_result = subprocess.Popen(["/usr/bin/git  --git-dir={}/.git describe --tags `git rev-list --tags --max-count=1`".format(directory)], shell=True, stdout=subprocess.PIPE)
-    emc_result = emc_result.stdout.read().strip()
-    return emc_result
+    emr_result = subprocess.Popen(["/usr/bin/git  --git-dir={}/.git describe --tags `git rev-list --tags --max-count=1`".format(directory)], shell=True, stdout=subprocess.PIPE)
+    emr_result = emr_result.stdout.read().strip()
+    return emr_result
