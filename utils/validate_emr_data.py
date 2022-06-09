@@ -54,12 +54,7 @@ def append_other_apps(app_id):
     with open(data["apps_loc"]) as apps:
         apps = json.load(apps)
 
-    load_apps = json.loads(apps)
-
     # appending the data
-    z.update(y)
-
-    # the result is a JSON string:
-    print(json.dumps(z))
-
+    apps.update(location)
+    write_file(data["apps_loc"], apps)
     return True

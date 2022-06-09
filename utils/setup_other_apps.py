@@ -5,13 +5,22 @@ from utils.validate_emr_data import append_other_apps
 
 
 def choose_app():
+    """
+    a function that prompts a ser to enter other apps installed at a facility
+    :return:
+    """
     print("Please select other apps installed !")
     print("1. NONE \n 2. ANC \n 3. Maternity \n 4. HTS \n 5. OPD \n 6. CRVS \n 7. Lab Ordering System")
     app_name = raw_input("Enter your Selection number: ")
     check_chosen_app(app_name)
     return True
 
+
 def check_chosen_app(app_id):
+    """
+    checks for the digits entered by user if they are valid
+    :param app_id:
+    """
     while True:
         try:
             if app_id > 7:
@@ -22,7 +31,7 @@ def check_chosen_app(app_id):
                 continue
             if app_id == 1:
                 break
-            append_other_apps(site_data)
+            append_other_apps(app_id)
         except ValueError:
             print("\nPlease enter a valid number")
             continue
