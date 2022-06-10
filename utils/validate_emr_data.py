@@ -39,16 +39,22 @@ def save_facility_details(site_data):  # this function will be called whe we imp
     write_file(data["config"], information)
     return True
 
+
 def append_other_apps(app_id):
+    """
+    appends other 'app' data to the apps.json file
+    :param app_id:
+    :return:
+    """
     # ("1. NONE \n 2. ANC \n 3. Maternity \n 4. HTS \n 5. OPD \n ")
     if app_id == 2:
-        location = {"anc":"/var/www/BHT-Core/apps/ANC"}
+        location = {"anc": "/var/www/BHT-Core/apps/ANC"}
     if app_id == 3:
-        location = {"maternity":"/var/www/BHT-Core/apps/MATERNITY"}
+        location = {"maternity": "/var/www/BHT-Core/apps/MATERNITY"}
     if app_id == 4:
-        location = {"hts":"/var/www/BHT-Core/apps/HTS"}
+        location = {"hts": "/var/www/BHT-Core/apps/HTS"}
     if app_id == 5:
-        location = {"opd":"/var/www/BHT-Core/apps/OPD"}
+        location = {"opd": "/var/www/BHT-Core/apps/OPD"}
 
     # Read JSON file
     with open(data["apps_loc"]) as apps:

@@ -10,7 +10,7 @@ def choose_app():
     :return:
     """
     print("Please select other apps installed !")
-    print("1. NONE \n 2. ANC \n 3. Maternity \n 4. HTS \n 5. OPD \n 6. CRVS \n 7. Lab Ordering System")
+    print("1. NONE \n 2. ANC \n 3. Maternity \n 4. HTS \n 5. OPD \n 6. CRVS")
 
     check_chosen_app()
     return True
