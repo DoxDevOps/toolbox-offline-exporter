@@ -21,7 +21,8 @@ def extract_data():
     # first verify if the data is correct in the config file
 
     config_file_data = validate_config_file(data["config"])
-    if not config_file_data:
+    apps_file_data = validate_config_file(data["apps_loc"])
+    if not config_file_data or not apps_file_data:
         return render_template('error.html')  # this will load a page that informs the user to reconfigure toolbox
     # if all is alright, then do the following
     # 1. get EMR version and mac address
@@ -49,4 +50,4 @@ def extract_data():
     return render_template('index.html', site_name=site_name["site_name"])
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', debug=True, port=6070)
+    app.run(host='127.0.0.1', debug=True, port=6870)

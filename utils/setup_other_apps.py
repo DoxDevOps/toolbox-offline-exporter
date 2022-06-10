@@ -11,18 +11,19 @@ def choose_app():
     """
     print("Please select other apps installed !")
     print("1. NONE \n 2. ANC \n 3. Maternity \n 4. HTS \n 5. OPD \n 6. CRVS \n 7. Lab Ordering System")
-    app_name = raw_input("Enter your Selection number: ")
-    check_chosen_app(app_name)
+
+    check_chosen_app()
     return True
 
 
-def check_chosen_app(app_id):
+def check_chosen_app():
     """
     checks for the digits entered by user if they are valid
     :param app_id:
     """
     while True:
         try:
+            app_id = int(raw_input("Enter your Selection number: "))
             if app_id > 7:
                 print("The number selected is not on the list, Please try again.")
                 continue
