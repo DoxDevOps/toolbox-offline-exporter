@@ -44,7 +44,7 @@ def choose_another_app():
     prompts a user to select another module / app installed at a facility
     """
     while True:
-        answer = raw_input("Do yo want to add another Module(yes/no, y/n :")
+        answer = raw_input("Do yo want to add another Module(yes/no, y/n :)")
         if any(answer.lower() == f for f in ["yes", 'y', '1', 'ye']):
             choose_app()  # start all over
         elif any(answer.lower() == f for f in ['no', 'n', '0']):
