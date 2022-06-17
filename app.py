@@ -36,8 +36,7 @@ def extract_data():
             "1": "Toolbox",
             "uuid": config_file_data["uuid"],
             "app_id": config_file_data["app_id"],
-            "module": emr_data,
-            "mac": mac
+            "module": emr_data
 
         }
 
