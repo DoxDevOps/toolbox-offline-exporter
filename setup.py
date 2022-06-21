@@ -14,8 +14,7 @@ def configure_site():
     print("Step 1 : Update laptop")
     answer = os.system("sudo apt-get update")
     print("Step 2: Install Pip.")
-    answer1 = os.system("sudo apt install python-pip")
-    print(answer1)
+    os.system("sudo apt install python-pip")
     print("Step3 : install python environment")
     os.system("sudo apt install virtualenv")
     os.system("virtualenv flask")
@@ -26,15 +25,20 @@ def configure_site():
     os.system(". flask/bin/activate && python -c 'from utils.setup_toolbox import "
               "get_facility_name; "
               "get_facility_name()'")
-    mac = mac_address()
-    print(mac)
+    mac_address()
     print("*********** END - Facility Configured Successfully *****************")
     print("creating Toolbox Service")
     os.system("sudo cp toolbox.desktop ~/Desktop/")
     # here is the code for creating the site.
     os.system("sudo cp toolbox.service /etc/systemd/system/")
     os.system("sudo systemctl daemon-reload && sudo systemctl start toolbox && sudo systemctl enable toolbox")
-    print("FINISHED :creating Toolbox Service")
+    print("FINISHED :creating Toolbox Service \n")
+    print("******************************************************************** \n")
+    print ("Lastly select other modules installed !")
+    os.system(". flask/bin/activate && python -c 'from utils.setup_other_apps import "
+              "choose_app; "
+              "choose_app()'")
+    print("FINISHED :Setting up other modules")
     return True
 
 
