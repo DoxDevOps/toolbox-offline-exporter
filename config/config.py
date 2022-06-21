@@ -6,9 +6,9 @@ data = \
     }
 modules = \
     {
-        "ANC": "/var/www/BHT-Core/apps/HTS",
-        "OPD": "/var/www/BHT-Core/apps/HTS",
-        "MATERNITY": "/var/www/BHT-Core/apps/HTS",
+        "ANC": "/var/www/BHT-Core/apps/ANC",
+        "OPD": "/var/www/BHT-Core/apps/OPD",
+        "MATERNITY": "/var/www/BHT-Core/apps/MATERNITY",
         "HTS": "/var/www/BHT-Core/apps/HTS"
 
     }
