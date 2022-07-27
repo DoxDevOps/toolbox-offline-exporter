@@ -1,12 +1,11 @@
 import json
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from config.config import data
 from utils.export_emr_data import check_installation_folders
 from utils.generate_qr_image import add_qr_data
 from utils.setup_toolbox import mac_address
 from utils.utilities import load_file
 from utils.validate_emr_data import validate_config_file
-
 
 app = Flask(__name__, static_folder="templates/static")
 
@@ -47,6 +46,18 @@ def extract_data():
     # 4 Get facility name . This name will be displayed on UI
     site_name = load_file(data["config"])
     return render_template('index.html', site_name=site_name["site_name"])
+
+
+@app.route('/getImage', methods=['GET'])
+def get_image_url():
+    """
+    Api endpoint that gets the qr image url and site name
+    :return: json
+    """
+    image_url = data["toolbox_image"]
+    site_name = load_file(data["config"])
+    return jsonify({'url': image_url, 'site': site_name["site_name"]})
+
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', debug=True, port=6870)

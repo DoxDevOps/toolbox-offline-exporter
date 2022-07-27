@@ -1,1 +1,1 @@
-{}
+{"core": "/var/www/BHT-Core", "api": "/var/www/BHT-EMR-API", "art": "/var/www/BHT-Core/apps/ART"}
