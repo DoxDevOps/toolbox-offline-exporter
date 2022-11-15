@@ -1,8 +1,10 @@
 # coding=utf-8
 
 """ These are universal functions that do not depend on any other function/ functionality of toolbox"""
+import ast
 import json
 import requests
+from flask import jsonify
 
 
 def load_file(location):
@@ -45,5 +47,7 @@ def get_request(url, token, body):
             'Content-type': 'application/json'
         }
     results = requests.get(url, data=body, headers=headers)
-    print(results)
+    # print(results.json())
+    results = json.dumps(results.json())
+
     return results

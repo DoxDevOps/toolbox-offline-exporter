@@ -10,7 +10,7 @@ def choose_app():
     """
     print("Please select other apps installed !")
     print("1. NONE \n2. ANC \n3. Maternity \n4. HTS \n5. OPD \n")
-    app_id = int(raw_input("Enter your Selection number: "))
+    app_id = int(input("Enter your Selection number: "))
     check_chosen_app(app_id)
     return True
 

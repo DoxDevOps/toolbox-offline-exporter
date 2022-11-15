@@ -1,5 +1,6 @@
 # coding=utf-8
 # !/bin/bash
+import ast
 import json
 import re
 import uuid
@@ -46,6 +47,7 @@ def display_facilities(facilities):
     :param facilities: json object
     :return:
     """
+
     facilities = json.loads(facilities)
     counter = 0
     for facility in facilities:

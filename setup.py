@@ -16,7 +16,7 @@ def configure_site():
     print("Step 2: Install Pip.")
     os.system("sudo apt install python3-pip")
     print("Step3 : install python environment")
-    os.system("sudo pip3 install virtualenv")
+    os.system("pip3 install virtualenv --user")
     os.system("virtualenv flask3")
     print("*********** SETTING FACILITY DETAILS *****************")
     os.system(". flask3/bin/activate && pip3 install -r requirements.txt && sudo apt-get install git")
