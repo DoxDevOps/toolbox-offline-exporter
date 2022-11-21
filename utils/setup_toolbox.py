@@ -3,7 +3,7 @@
 import json
 import re
 import uuid
-
+import subprocess
 from utils.utilities import load_file, get_request
 from utils.validate_emr_data import save_facility_details
 
@@ -113,3 +113,19 @@ def send_mac_address():
     return True
 
 
+def getSerial():
+    """
+    gets machine Serial number
+    :return:
+        host_serial_number : serial number of a machine
+    """
+    # password for admin access permenisions 
+    sudoPassword = 'walle'
+    # linux (debian) for geting srial numbetr
+    command = 'dmidecode -s system-serial-number'.split()
+    # call first cmd
+    cmd1 = subprocess.Popen(['echo',sudoPassword], stdout=subprocess.PIPE)
+    # call second cmd init
+    cmd2 = subprocess.Popen(['sudo','-S'] + command, stdin=cmd1.stdout, stdout=subprocess.PIPE)
+    output = cmd2.stdout.read()
+    return output.strip()
