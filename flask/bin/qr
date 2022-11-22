@@ -1,4 +1,4 @@
-#!/home/egpaf/Documents/DevopsProjects/toolbox-offline-exporter/flask/bin/python2
+#!/var/www/toolbox-offline-exporter/flask/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

@@ -6,6 +6,7 @@ import uuid
 import subprocess
 from utils.utilities import load_file, get_request
 from utils.validate_emr_data import save_facility_details
+from utils.utilities import get_host_pass
 
 
 def get_facility_name():
@@ -120,7 +121,7 @@ def getSerial():
         host_serial_number : serial number of a machine
     """
     # password for admin access permenisions 
-    sudoPassword = 'walle'
+    sudoPassword = get_host_pass()
     # linux (debian) for geting srial numbetr
     command = 'dmidecode -s system-serial-number'.split()
     # call first cmd

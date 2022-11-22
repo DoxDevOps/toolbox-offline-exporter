@@ -19,7 +19,7 @@ def configure_site():
     os.system("sudo apt install virtualenv")
     os.system("virtualenv flask")
     print("*********** SETTING FACILITY DETAILS *****************")
-    os.system(". flask/bin/activate && pip install -r requirements.txt && sudo apt-get install git")
+    os.system(". flask/bin/activate && pip2 install -r requirements.txt && sudo apt-get install git")
 
     print("******************************************************")
     os.system(". flask/bin/activate && python -c 'from utils.setup_toolbox import "

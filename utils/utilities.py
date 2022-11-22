@@ -45,3 +45,24 @@ def get_request(url, token, body):
     r = urllib2.urlopen(req)
     results = r.read()
     return results
+
+def get_host_pass():
+    """
+    a function that read password stored in a file
+    :return: passwrd as str
+    """
+    file = open("../config/___rapt___.txt","r")
+    passwrd = file.read()
+    file.close()
+    return passwrd.strip()
+
+def save_host_pass(passwrd):
+    """
+    a function that stores password in a file
+    :param passwrd: passwrd to be stored
+    :return: passwrd as str
+    """
+    file = open("../config/___rapt___.txt","w")
+    file.write(passwrd.strip())
+    file.close()
+    return passwrd.strip()
