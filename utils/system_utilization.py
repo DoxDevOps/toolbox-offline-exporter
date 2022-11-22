@@ -3,18 +3,25 @@ import subprocess
 import json
 import psutil
 from psutil._common import bytes2human
+import distro as distro
 
-ram = psutil.virtual_memory()
-disk_space = psutil.disk_usage('/')
+
+_ram_ = psutil.virtual_memory()
+_hdd_ = psutil.disk_usage('/')
+
+
+def get_cpu_utilization():
+    data = psutil.cpu_percent()
+    return data
 
 
 def get_ram_details():
     ram_dict = \
         {
-            "total": bytes2human(ram.total),
-            "used": bytes2human(ram.used),
-            "free": bytes2human(ram.free),
-            "percentage": int(ram.percent)
+            "total_ram": bytes2human(_ram_.total),
+            "used_ram": bytes2human(_ram_.used),
+            "remaining_ram": bytes2human(_ram_.free),
+            # "percentage": int(_ram_.percent)
 
         }
     json_object = json.dumps(ram_dict)
@@ -25,13 +32,13 @@ def get_ram_details():
 def get_hdd_details():
     hdd_dict = \
         {
-            "total": disk_space.total,
-            "used": disk_space.used,
-            "free": disk_space.free,
-            "percentage": int(disk_space.percent)
+            "hdd_total_storage": bytes2human(_hdd_.total),
+            "hdd_used_storage": bytes2human(_hdd_.used),
+            "hdd_remaining_storage": bytes2human(_hdd_.free),
+            "hdd_used_in_percentiles": int(_hdd_.percent)
         }
     json_object = json.dumps(hdd_dict)
-
+    json_object = json.loads(json_object)
     return json_object
 
 
@@ -50,13 +57,5 @@ def check_service():
 
 
 def platform_info():
-    osname = platform.system()
-    version = platform.release()
-    osname = osname.split('\n')
-    version = version.split('\n')
-    for x in version:
-        version_str = x.strip()
-    for y in osname:
-        osname_str = y.strip()
-    #encrypt.encrypt_data("OS release", version_str)
-    #encrypt.encrypt_data("OS", osname_str)
+    os_info = distro.os_release_info()
+    return os_info
