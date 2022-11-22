@@ -4,12 +4,17 @@ from config.config import data
 from utils.export_emr_data import check_installation_folders
 from utils.generate_qr_image import add_qr_data
 from utils.setup_toolbox import mac_address
+from utils.system_utilization import get_ram_details
 from utils.utilities import load_file
 from utils.validate_emr_data import validate_config_file
 
 app = Flask(__name__, static_folder="templates/static")
 
 
+@app.route('/test')
+def extract_data():
+    get_ram_details()
+    return 1
 @app.route('/')
 def extract_data():
     """gets EMR data and creates a QR Image
