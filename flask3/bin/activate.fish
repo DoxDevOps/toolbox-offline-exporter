@@ -36,7 +36,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/egpaf/Documents/DevopsProjects/toolbox-offline-exporter/flask"
+set -gx VIRTUAL_ENV "/home/egpaf/Documents/DevopsProjects/toolbox-offline-exporter/flask3"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

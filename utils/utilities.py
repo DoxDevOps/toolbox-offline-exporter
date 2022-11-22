@@ -1,8 +1,10 @@
 # coding=utf-8
 
 """ These are universal functions that do not depend on any other function/ functionality of toolbox"""
+import ast
 import json
-import urllib2
+import requests
+from flask import jsonify
 
 
 def load_file(location):
@@ -37,11 +39,15 @@ def get_request(url, token, body):
     :param body: data to be sent to the endpoint
     :return: info from the endpoint
     """
-    req = urllib2.Request(url, body)
-    req.get_method = lambda: 'GET'
-    req.add_header('Content-type', 'application/json')
-    req.add_header('Accept', 'text/plain')
-    req.add_header('Authorization', token)
-    r = urllib2.urlopen(req)
-    results = r.read()
+    headers = \
+        {
+            'Authorization': token,
+            'Content-Type': 'application/json',
+            'Accept': 'text/plain',
+            'Content-type': 'application/json'
+        }
+    results = requests.get(url, data=body, headers=headers)
+    # print(results.json())
+    results = json.dumps(results.json())
+
     return results
