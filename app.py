@@ -18,7 +18,7 @@ app = Flask(__name__, static_folder="templates/static")
 @app.route('/test')
 def test():
 
-    return jsonify({"SUCCESS" : "System is perfectly working"})
+    return jsonify({"SUCCESS": "System is perfectly working"})
 
 
 @app.route('/')
