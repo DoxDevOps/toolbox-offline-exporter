@@ -6,6 +6,7 @@ from utils.generate_qr_image import add_qr_data
 from utils.setup_toolbox import mac_address
 from utils.utilities import load_file
 from utils.validate_emr_data import validate_config_file
+from utils.utilities import get_host_serial
 
 
 app = Flask(__name__, static_folder="templates/static")
@@ -28,6 +29,7 @@ def extract_data():
     # 1. get EMR version and mac address
     emr_data = check_installation_folders(data["apps_loc"])
     mac = mac_address()
+    serial_number = get_host_serial()
     if not emr_data:
         return render_template('error.html')
     # 2. This is a final Dictionary to be sent for QR Image generation
@@ -36,7 +38,8 @@ def extract_data():
             "1": "Toolbox",
             "uuid": config_file_data["uuid"],
             "app_id": config_file_data["app_id"],
-            "module": emr_data
+            "module": emr_data,
+            "serial_number": serial_number
 
         }
 

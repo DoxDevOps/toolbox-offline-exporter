@@ -46,23 +46,23 @@ def get_request(url, token, body):
     results = r.read()
     return results
 
-def get_host_pass():
+def get_host_serial():
     """
-    a function that read password stored in a file
-    :return: passwrd as str
+    a function that read serial stored in a file
+    :return: serial as str
     """
-    file = open("../config/___rapt___.txt","r")
-    passwrd = file.read()
+    file = open("config/___rapt___.txt","r")
+    serial = file.read()
     file.close()
-    return passwrd.strip()
+    return serial.strip()
 
-def save_host_pass(passwrd):
+def save_host_serial(serial):
     """
-    a function that stores password in a file
-    :param passwrd: passwrd to be stored
-    :return: passwrd as str
+    a function that stores serial in a file
+    :param serial: serial to be stored
+    :return: serial as str
     """
-    file = open("../config/___rapt___.txt","w")
-    file.write(passwrd.strip())
+    file = open("config/___rapt___.txt","w")
+    file.write(serial.strip())
     file.close()
-    return passwrd.strip()
+    return serial.strip()

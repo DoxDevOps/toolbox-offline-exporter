@@ -6,7 +6,7 @@ import uuid
 import subprocess
 from utils.utilities import load_file, get_request
 from utils.validate_emr_data import save_facility_details
-from utils.utilities import get_host_pass
+from utils.utilities import save_host_serial
 
 
 def get_facility_name():
@@ -121,12 +121,9 @@ def getSerial():
         host_serial_number : serial number of a machine
     """
     # password for admin access permenisions 
-    sudoPassword = get_host_pass()
     # linux (debian) for geting srial numbetr
-    command = 'dmidecode -s system-serial-number'.split()
-    # call first cmd
-    cmd1 = subprocess.Popen(['echo',sudoPassword], stdout=subprocess.PIPE)
-    # call second cmd init
-    cmd2 = subprocess.Popen(['sudo','-S'] + command, stdin=cmd1.stdout, stdout=subprocess.PIPE)
+    command = 'sudo dmidecode -s system-serial-number'.split()
+    cmd2 = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
     output = cmd2.stdout.read()
+    save_host_serial(output.strip())
     return output.strip()
