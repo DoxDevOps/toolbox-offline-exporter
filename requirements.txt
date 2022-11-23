@@ -6,7 +6,6 @@ Flask==1.1.4
 itsdangerous==1.1.0
 Jinja2==2.11.3
 MarkupSafe==1.1.1
-Pillow==6.2.2
 psutil==5.9.4
 PyJWT==1.7.1
 qrcode==7.3.1
