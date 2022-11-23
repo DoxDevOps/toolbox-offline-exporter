@@ -16,10 +16,6 @@ def configure_site():
     print("Step 2: Install Pip.")
     # os.system("sudo apt install python3-pip")
     os.system("python3 -m pip install --user --upgrade pip")
-    print("Step3 : install python environment")
-    #os.system("pip3 install virtualenv --user")
-    os.system("python3 -m pip install --user virtualenv")
-
     #os.system("python3 -m venv flask3")
     os.system("python3 -m venv flask3")
     print("*********** SETTING FACILITY DETAILS *****************")
