@@ -60,4 +60,4 @@ def get_image_url():
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', debug=True, port=6870)
+    app.run(host='127.0.0.1', debug=True, port=6070)
