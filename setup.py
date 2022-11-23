@@ -14,10 +14,14 @@ def configure_site():
     print("Step 1 : Update laptop")
     answer = os.system("sudo apt-get update")
     print("Step 2: Install Pip.")
-    os.system("sudo apt install python3-pip")
+    # os.system("sudo apt install python3-pip")
+    os.system("python3 -m pip install --user --upgrade pip")
     print("Step3 : install python environment")
-    os.system("pip3 install virtualenv --user")
-    os.system("virtualenv flask3")
+    #os.system("pip3 install virtualenv --user")
+    os.system("python3 -m pip install --user virtualenv")
+
+    #os.system("python3 -m venv flask3")
+    os.system("python3 -m venv flask3")
     print("*********** SETTING FACILITY DETAILS *****************")
     os.system(". flask3/bin/activate && pip3 install -r requirements.txt && sudo apt-get install git")
 
