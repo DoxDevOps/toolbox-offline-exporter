@@ -2,7 +2,7 @@
 import os
 
 from utils.setup_toolbox import mac_address, get_facility_name
-
+from utils.setup_toolbox import getSerial
 
 def configure_site():
     """
@@ -14,10 +14,10 @@ def configure_site():
     print("Step 1 : Update laptop")
     answer = os.system("sudo apt-get update")
     print("Step 2: Install Pip.")
-    os.system("sudo apt install python3-pip")
-    print("Step3 : install python environment")
-    os.system("pip3 install virtualenv --user")
-    os.system("virtualenv flask3")
+    # os.system("sudo apt install python3-pip")
+    os.system("python3 -m pip install --user --upgrade pip")
+    #os.system("python3 -m venv flask3")
+    os.system("python3 -m venv flask3")
     print("*********** SETTING FACILITY DETAILS *****************")
     os.system(". flask3/bin/activate && pip3 install -r requirements.txt && sudo apt-get install git")
 
@@ -26,6 +26,8 @@ def configure_site():
               "get_facility_name; "
               "get_facility_name()'")
     mac_address()
+    # get system serial number
+    getSerial()
     print("*********** END - Facility Configured Successfully *****************")
     print("creating Toolbox Service")
     os.system("sudo cp toolbox.desktop ~/Desktop/")

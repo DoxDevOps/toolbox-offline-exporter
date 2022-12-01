@@ -11,6 +11,7 @@ from utils.setup_toolbox import mac_address
 from utils.system_utilization import get_ram_details, get_hdd_details, platform_info, get_cpu_utilization
 from utils.utilities import load_file
 from utils.validate_emr_data import validate_config_file
+from utils.utilities import get_host_serial
 
 app = Flask(__name__, static_folder="templates/static")
 
@@ -37,11 +38,14 @@ def extract_data():
     # 1. get EMR version and mac address
     emr_data = check_installation_folders(data["apps_loc"])
     mac = mac_address()
-    # 2. get System Utilization Stats and OS details
+    # 2. Get Serial number 
+    serial_number = get_host_serial()
+    # 3. get System Utilization Stats and OS details
     hdd = get_hdd_details()
     ram = get_ram_details()
     os_info = platform_info()
-    cpu = get_cpu_utilization()
+    cpu = get_cpu_utilization()    
+    
     if not emr_data:
         return render_template('error.html')
 
@@ -62,7 +66,9 @@ def extract_data():
                 "remaining_ram": ram["remaining_ram"],
                 "cpu_utilization": cpu,
                 "os_name": os_info["name"],
-                "os_version": os_info["version_id"]}
+                "os_version": os_info["version_id"]},
+             "module": emr_data,
+            "serial_number": serial_number
 
         }
 
@@ -87,4 +93,4 @@ def get_image_url():
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', debug=True, port=6870)
+    app.run(host='127.0.0.1', debug=True, port=6070)

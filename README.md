@@ -7,10 +7,11 @@ For example : If a site has EMC or POC installed, toolbox will scan the current 
 
 This information is displayed using a QR Image that is displayed on the web browser.
 ## INSTALLATION GUIDE 
-1. Clone from github using <url>
-2. cd into the toolbox-offline-exporter using **_cd_ _toolbox-offline-exporter_**
-3. Inside the repo, you will find a script named **setup.py** and **reconfig.py**
-4. Make both scripts executable  (setup.py and reconfig.py)
+1. Clone from github using <url> into /var/www/
+2. Install pyhton3 virtual environment using python3 -m venv flask3
+3. cd into the toolbox-offline-exporter using **_cd_ _toolbox-offline-exporter_**
+4. Inside the repo, you will find a script named **setup.py** and **reconfig.py**
+5. Make both scripts executable  (setup.py and reconfig.py)
 
 ### 1. Fresh Installation 
 For fresh installation(Installing toolbox for the first time), do the following 

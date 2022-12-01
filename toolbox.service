@@ -5,8 +5,8 @@ After       = network.target
 [Service]
 Group=www-data
 WorkingDirectory=/var/www/toolbox-offline-exporter
-Environment="PATH=/var/www/toolbox-offline-exporter/flask/bin"
-ExecStart=/usr/bin/python  /var/www/toolbox-offline-exporter/start.py
+Environment="PATH=/var/www/toolbox-offline-exporter/flask3/bin"
+ExecStart=/usr/bin/python3  /var/www/toolbox-offline-exporter/start.py
 
 
 # In case if it gets stopped, restart it immediately
