@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# serial key file
+config/___rapt___.txt
 # C extensions
 *.so
 
@@ -110,6 +112,9 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+# flask3
+flask3
+
 
 # Spyder project settings
 .spyderproject
@@ -129,5 +134,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# flask3
-flask3
+

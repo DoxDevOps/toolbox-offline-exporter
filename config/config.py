@@ -2,7 +2,8 @@ data = \
     {
         "toolbox_image": "templates/static/images/toolbox.png",
         "config": "config/config.json",
-        "apps_loc": "config/apps.json"
+        "apps_loc": "config/apps.json",
+        "serial_key": "config/___rapt___.txt"
     }
 modules = \
     {

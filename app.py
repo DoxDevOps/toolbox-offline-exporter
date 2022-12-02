@@ -1,13 +1,11 @@
 import json
-import os
-import platform
-
+from os.path import exists
 
 from flask import Flask, render_template, jsonify
 from config.config import data
 from utils.export_emr_data import check_installation_folders
 from utils.generate_qr_image import add_qr_data
-from utils.setup_toolbox import mac_address
+from utils.setup_toolbox import mac_address, getSerial
 from utils.system_utilization import get_ram_details, get_hdd_details, platform_info, get_cpu_utilization
 from utils.utilities import load_file
 from utils.validate_emr_data import validate_config_file
@@ -29,11 +27,17 @@ def extract_data():
     Returns:
         dict: hosts from api
     """
+    # check if the serial key has been retrieved
+    if not exists(data["serial_key"]):
+        getSerial() # if the serial key is not available, then create one
+
     # first verify if the data is correct in the config file
     config_file_data = validate_config_file(data["config"])
     apps_file_data = validate_config_file(data["apps_loc"])
+
     if not config_file_data or not apps_file_data:
         return render_template('error.html')  # this will load a page that informs the user to reconfigure toolbox
+
     # if all is alright, then do the following
     # 1. get EMR version and mac address
     emr_data = check_installation_folders(data["apps_loc"])
