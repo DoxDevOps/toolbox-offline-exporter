@@ -2,7 +2,7 @@
 import os
 
 from utils.setup_toolbox import mac_address, get_facility_name
-from utils.setup_toolbox import getSerial
+from utils.setup_toolbox import get_serial
 
 def configure_site():
     """
@@ -27,7 +27,7 @@ def configure_site():
               "get_facility_name()'")
     mac_address()
     # get system serial number
-    getSerial()
+    get_serial()
     print("*********** END - Facility Configured Successfully *****************")
     print("creating Toolbox Service")
     os.system("sudo cp toolbox.desktop ~/Desktop/")
