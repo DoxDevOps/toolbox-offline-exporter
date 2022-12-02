@@ -67,7 +67,7 @@ def extract_data():
                 "cpu_utilization": cpu,
                 "os_name": os_info["name"],
                 "os_version": os_info["version_id"]},
-             "module": emr_data,
+            "module": emr_data,
             "serial_number": serial_number
 
         }
