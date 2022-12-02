@@ -5,11 +5,11 @@ from flask import Flask, render_template, jsonify
 from config.config import data
 from utils.export_emr_data import check_installation_folders
 from utils.generate_qr_image import add_qr_data
-from utils.setup_toolbox import mac_address, getSerial
+from utils.setup_toolbox import mac_address, get_serial
 from utils.system_utilization import get_ram_details, get_hdd_details, platform_info, get_cpu_utilization
 from utils.utilities import load_file
 from utils.validate_emr_data import validate_config_file
-from utils.utilities import get_host_serial
+from utils.get_serial import get_host_serial
 
 app = Flask(__name__, static_folder="templates/static")
 
@@ -29,7 +29,7 @@ def extract_data():
     """
     # check if the serial key has been retrieved
     if not exists(data["serial_key"]):
-        getSerial() # if the serial key is not available, then create one
+        get_serial() # if the serial key is not available, then create one
 
     # first verify if the data is correct in the config file
     config_file_data = validate_config_file(data["config"])
@@ -96,4 +96,4 @@ def get_image_url():
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', debug=True, port=6070)
+    app.run(host='127.0.0.1', debug=True, port=5070)
