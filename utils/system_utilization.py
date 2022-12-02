@@ -25,7 +25,7 @@ def get_ram_details():
 
         }
     json_object = json.dumps(ram_dict)
-
+    json_object = json.loads(json_object)
     return json_object
 
 
