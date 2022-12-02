@@ -56,7 +56,6 @@ def extract_data():
             "uuid": config_file_data["uuid"],
             "app_id": config_file_data["app_id"],
             "system_utilization": {
-                "module": emr_data,
                 "hdd_total_storage": hdd["hdd_total_storage"],
                 "hdd_used_storage": hdd["hdd_used_storage"],
                 "hdd_remaining_storage": hdd["hdd_remaining_storage"],
