@@ -7,7 +7,7 @@ import uuid
 
 from utils.utilities import load_file, get_request
 from utils.validate_emr_data import save_facility_details
-from utils.utilities import save_host_serial
+from utils.get_serial import save_host_serial
 import subprocess
 
 
@@ -117,7 +117,7 @@ def send_mac_address():
     return True
 
 
-def getSerial():
+def get_serial():
     """
     gets machine Serial number
     :return:

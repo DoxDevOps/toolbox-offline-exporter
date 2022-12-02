@@ -11,11 +11,19 @@ _hdd_ = psutil.disk_usage('/')
 
 
 def get_cpu_utilization():
+    """
+    A function that checks CPU utilization
+    :return: percentage of the CPU used
+    """
     data = psutil.cpu_percent()
     return data
 
 
 def get_ram_details():
+    """
+    Function that checks RAM stats on a site
+    :return: Json Object that contains all RAM details
+    """
     ram_dict = \
         {
             "total_ram": bytes2human(_ram_.total),
@@ -30,6 +38,10 @@ def get_ram_details():
 
 
 def get_hdd_details():
+    """
+    Function that gets HDD stats
+    :return: Json Object containing HDD stats
+    """
     hdd_dict = \
         {
             "hdd_total_storage": bytes2human(_hdd_.total),
@@ -43,6 +55,10 @@ def get_hdd_details():
 
 
 def check_service():
+    """
+    Checks if the services are up or not
+    :return:
+    """
     services = ["docker", "mysql", "nginx"]  # service to check (Active or Inactive)
     running_services_dict = {}
     for service in services:
@@ -57,5 +73,9 @@ def check_service():
 
 
 def platform_info():
+    """
+    Check the Version of Ubuntu running at a site
+    :return:
+    """
     os_info = distro.os_release_info()
     return os_info
