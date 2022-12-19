@@ -69,7 +69,7 @@ def extract_data():
                 "remaining_ram": ram["remaining_ram"],
                 "cpu_utilization": cpu,
                 "os_name": os_info["name"],
-                "os_version": os_info["version_id"]},
+                "os_version": os_info["version"]},
             "module": emr_data,
             "serial_number": serial_number
 
