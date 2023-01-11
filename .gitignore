@@ -10,7 +10,6 @@ config/___rapt___.txt
 
 # Distribution / packaging
 .Python
-flask*/
 build/
 develop-eggs/
 dist/
