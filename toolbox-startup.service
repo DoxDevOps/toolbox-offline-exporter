@@ -1,0 +1,9 @@
+[Unit]
+Description=Toolbox Startup Reporter
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3  /var/www/toolbox-offline-exporter/startup_exporter.py
+
+[Install]
+WantedBy=multi-user.target

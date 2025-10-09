@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/python3
 from utils.setup_other_apps import choose_app
 from utils.setup_toolbox import get_facility_name
 

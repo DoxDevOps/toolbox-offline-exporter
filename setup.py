@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/python3
 import os
 
 from utils.setup_toolbox import mac_address, get_facility_name
@@ -35,6 +35,11 @@ def configure_site():
     os.system("sudo cp toolbox.service /etc/systemd/system/")
     os.system("sudo systemctl daemon-reload && sudo systemctl start toolbox && sudo systemctl enable toolbox")
     print("FINISHED :creating Toolbox Service \n")
+    print("Now Creating  toolbox start app service")
+    os.system("sudo cp toolbox-startup.service /etc/systemd/system/")
+    os.system("sudo systemctl daemon-reload && sudo systemctl start toolbox-startup && "
+              "sudo systemctl enable toolbox-startup")
+    print("FINISHED :creating toolbox start app service \n")
     print("******************************************************************** \n")
     print ("Lastly select other modules installed !")
     os.system(". flask3/bin/activate && python3 -c 'from utils.setup_other_apps import "

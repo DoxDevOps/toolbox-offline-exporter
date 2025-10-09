@@ -19,3 +19,5 @@ setup_emr = \
         "api": "/var/www/BHT-EMR-API",
         "emc": "/var/www/emastercard-upgrade-automation"
     }
+    
+bridge_endpoint = "http://10.44.0.65:5000/submit-data"
