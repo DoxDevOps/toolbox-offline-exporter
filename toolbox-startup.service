@@ -1,21 +1,17 @@
- [Unit]
-Description = Toolbox Startup Reporter
-After       = network.target
+[Unit]
+Description=Toolbox Startup Reporter
+After=network-online.target
+Wants=network-online.target
 
 [Service]
-Group=www-data
-WorkingDirectory=/var/www/toolbox-offline-exporter
+Type=oneshot
+ExecStartPre=/bin/sleep 300
+ExecStart=/usr/bin/python3 /var/www/toolbox-offline-exporter/startup_exporter.py
 Environment="PATH=/var/www/toolbox-offline-exporter/flask3/bin"
-ExecStart=/usr/bin/python3  /var/www/toolbox-offline-exporter/startup_exporter.py
-
-
-# In case if it gets stopped, restart it immediately
-Restart = always
-
-Type = simple
-
+WorkingDirectory=/var/www/toolbox-offline-exporter
+StandardOutput=journal
+StandardError=journal
+Restart=no
 
 [Install]
-# multi-user.target corresponds to run level 3
-# roughtly meaning wanted by system start
-WantedBy    = multi-user.target
+WantedBy=multi-user.target
