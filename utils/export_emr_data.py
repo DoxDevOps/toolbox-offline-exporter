@@ -1,39 +1,51 @@
 # coding=utf-8
-
-import os
+import json
 import subprocess
-from os.path import exists
-from flask import json
-
-from utils.utilities import load_file
+from pathlib import Path
 
 
-def check_installation_folders(path):
+def check_installation_folders(config_path):
     """
-    checks if EMR installation folders are available
-    :return:
+    Checks if EMR installation folders exist and returns their Git tag versions.
+    :param config_path: path to a JSON file containing {"app_name": "/path/to/app"}
+    :return: dict with {app_name: tag or "unknown"}
     """
-
     version_dict = {}
-    apps_dir = open(path)
-    apps_dir = json.load(apps_dir)
 
-    for key in apps_dir:
-        if exists(apps_dir[key]):
-            tag = get_emr_versions(apps_dir[key])
-            version_dict[key] = str(tag, 'utf-8')
-            # print(version_dict)
-    json_object = json.dumps(version_dict)
-    json_object = json. loads(json_object)
-    return json_object
+    config_file = Path(config_path)
+    if not config_file.exists():
+        raise FileNotFoundError(f"Config file not found: {config_path}")
+
+    with open(config_file) as f:
+        apps_dir = json.load(f)
+
+    for app_name, app_path in apps_dir.items():
+        app_dir = Path(app_path)
+        if app_dir.exists():
+            tag = get_emr_version(app_dir)
+            version_dict[app_name] = tag
+        else:
+            version_dict[app_name] = "missing"
+
+    return version_dict
 
 
-def get_emr_versions(directory):
+def get_emr_version(directory):
     """
-    get emr version from the installation folder
-    :return:
-        string: emr tags
+    Runs `git describe --tags` in the repo and returns the tag.
     """
-    emr_result = subprocess.Popen(["/usr/bin/git  --git-dir={}/.git describe --tags `git rev-list --tags --max-count=1`".format(directory)], shell=True, stdout=subprocess.PIPE)
-    emr_result = emr_result.stdout.read().strip()
-    return emr_result
+    git_dir = Path(directory) / ".git"
+    if not git_dir.exists():
+        return "no_git_repo"
+
+    try:
+        result = subprocess.run(
+            ["git", "--git-dir", str(git_dir), "--work-tree", str(directory), "describe", "--tags"],
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        return result.stdout.strip()
+    except subprocess.CalledProcessError as e:
+        # Handle cases where no tags exist or invalid repo state
+        return f"error: {e.stderr.strip() or 'unknown'}"
