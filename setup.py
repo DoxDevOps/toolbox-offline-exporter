@@ -45,6 +45,7 @@ def configure_site():
     os.system("sudo systemctl daemon-reload && sudo systemctl start toolbox && sudo systemctl enable toolbox")
     print("FINISHED :creating Toolbox Service \n")
     print("Now Creating  toolbox start app service")
+    print("This process will take a few minutes, please wait...")
     os.system("sudo cp toolbox-startup.service /etc/systemd/system/")
     os.system("sudo systemctl daemon-reload && sudo systemctl start toolbox-startup && "
               "sudo systemctl enable toolbox-startup")
