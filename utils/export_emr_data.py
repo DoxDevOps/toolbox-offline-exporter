@@ -38,9 +38,11 @@ def get_emr_version(directory):
     if not git_dir.exists():
         return "no_git_repo"
 
+    git_path = "/usr/bin/git"  # Full path to git (fix for systemd environment)
+
     try:
         result = subprocess.run(
-            ["git", "--git-dir", str(git_dir), "--work-tree", str(directory), "describe", "--tags"],
+            [git_path, "--git-dir", str(git_dir), "--work-tree", str(directory), "describe", "--tags"],
             capture_output=True,
             text=True,
             check=True
