@@ -17,11 +17,20 @@ def configure_site():
     # os.system("sudo apt install python3-pip")
     os.system("python3 -m pip install --user --upgrade pip")
     #os.system("python3 -m venv flask3")
+    # if flask3 environment is already ther, delete it first
+    if os.path.exists("flask3"):
+        os.system("rm -rf flask3")
+
+    print("Step 3: Create Virtual Environment")
     os.system("python3 -m venv flask3")
     print("*********** SETTING FACILITY DETAILS *****************")
+    os.system(". flask3/bin/activate && sudo apt install -y libjpeg-dev zlib1g-dev libfreetype6-dev liblcms2-dev libopenjp2-7-dev libtiff5-dev tk-dev tcl-dev")
+    os.system(". flask3/bin/activate && pip install --upgrade pip setuptools wheel")
+    
     os.system(". flask3/bin/activate && pip3 install -r requirements.txt && sudo apt-get install git")
 
     print("******************************************************")
+    
     os.system(". flask3/bin/activate && python3 -c 'from utils.setup_toolbox import "
               "get_facility_name; "
               "get_facility_name()'")
