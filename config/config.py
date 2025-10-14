@@ -20,4 +20,4 @@ setup_emr = \
         "emc": "/var/www/emastercard-upgrade-automation"
     }
     
-bridge_endpoint = "http://10.44.0.65:5000/submit-data"
+bridge_endpoint = "http://10.44.0.65:2063/submit-data"

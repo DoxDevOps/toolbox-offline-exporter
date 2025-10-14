@@ -51,7 +51,14 @@ def configure_site():
               "sudo systemctl enable toolbox-startup")
     print("FINISHED :creating toolbox start app service \n")
     print("******************************************************************** \n")
-    print ("Lastly select other modules installed !")
+    print("Now lets create a timer for our service to start after 15 minutes ")
+    os.system("sudo cp toolbox-startup.timer /etc/systemd/system/")
+    os.system("sudo systemctl daemon-reload && sudo systemctl start toolbox-startup.timer && "
+              "sudo systemctl enable --now toolbox-startup.timer")    
+
+    print("FINISHED :creating timer for toolbox start app service \n")
+    print("Step 4: Setting up other modules")
+    print("Lastly select other modules installed !")
     os.system(". flask3/bin/activate && python3 -c 'from utils.setup_other_apps import "
               "choose_app; "
               "choose_app()'")

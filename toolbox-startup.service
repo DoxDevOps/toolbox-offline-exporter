@@ -5,7 +5,7 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
-ExecStartPre=/bin/sleep 300
+ExecStartPre=/bin/sleep 5
 ExecStart=/usr/bin/python3 /var/www/toolbox-offline-exporter/startup_exporter.py
 Environment="PATH=/var/www/toolbox-offline-exporter/flask3/bin"
 WorkingDirectory=/var/www/toolbox-offline-exporter
@@ -15,3 +15,6 @@ Restart=no
 
 [Install]
 WantedBy=multi-user.target
+
+
+

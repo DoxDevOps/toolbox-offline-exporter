@@ -1,0 +1,13 @@
+[Unit]
+Description=Run Toolbox Startup Reporter every 15 minutes
+
+[Timer]
+# Wait 10 minutes after boot before first run
+OnBootSec=10min
+# Then run every 15 minutes
+OnUnitActiveSec=15min
+# Ensure it runs if it missed a schedule while off
+Persistent=true
+
+[Install]
+WantedBy=timers.target
